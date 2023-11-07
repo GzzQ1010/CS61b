@@ -37,7 +37,7 @@ public class ArrayDeque<Type> implements deque<Type> {
         int Last=getLastIndex();
         Type[] new_arr= (Type[]) new Object[capacity];
         if(First<Last){
-            System.arraycopy(items,First,new_arr,0,Last-First);
+            System.arraycopy(items,First,new_arr,0,next_back-First);
         }else {
             if(First<=items.length-1){
                 System.arraycopy(items,First,new_arr,0,items.length-First);
@@ -81,7 +81,10 @@ public class ArrayDeque<Type> implements deque<Type> {
 
     @Override
     public Type removeFirst(){
-        Type removedFirst=items[next_front+1];
+        if(size==0){
+            return null;
+        }
+        Type removedFirst=items[(next_front+1+ items.length)% items.length];
         next_front=(next_front+1+items.length)% items.length;
         size-=1;
         if (IfDesize()){
@@ -92,7 +95,10 @@ public class ArrayDeque<Type> implements deque<Type> {
 
     @Override
     public Type removeLast(){
-        Type removedLast=items[next_back-1];
+        if (size==0){
+            return null;
+        }
+        Type removedLast=items[(next_back-1+ items.length)% items.length];
         next_back=(next_back-1+items.length)% items.length;
         size-=1;
         if (IfDesize()){

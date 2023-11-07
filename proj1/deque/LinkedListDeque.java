@@ -118,26 +118,35 @@ public class LinkedListDeque<Type> implements deque<Type>{
     public Type removeFirst(){
         if(size==0){
             return null;
-        }else {
-            Type firstItem = Sentinel_node.Next.item;
+        }
+        Type firstItem = Sentinel_node.Next.item;
+        if(size==1){
+            Sentinel_node.Next=null;
+            back_node.Previous=null;
+        }
+        else {
             Sentinel_node.Next = Sentinel_node.Next.Next;
             Sentinel_node.Next.Previous = null;
-            size-=1;
-            return firstItem;
         }
+        size-=1;
+        return firstItem;
     }
 
     @Override
     public Type removeLast(){
         if(size==0){
             return null;
-        }else {
-            Type lastItem = back_node.Previous.item;
+        }
+        Type lastItem = back_node.Previous.item;
+        if (size==1){
+          Sentinel_node.Next=null;
+          back_node.Previous=null;
+        } else {
             back_node.Previous = back_node.Previous.Previous;
             back_node.Previous.Next = null;
-            size-=1;
-            return lastItem;
         }
+        size-=1;
+        return lastItem;
     }
 
     private class LinkedListDequeIterator implements Iterator<Type>{

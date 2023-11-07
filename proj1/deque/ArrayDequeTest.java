@@ -63,6 +63,12 @@ public class ArrayDequeTest {
         List1.removeLast();
         assertEquals(3,List1.size());
         assertEquals(1,(int)List1.get(List1.size()));
+        List1.removeLast();
+        List1.removeLast();
+        List1.removeLast();
+        assertEquals(0,List1.size());
+        assertEquals(null,List1.removeLast());
+
     }
 
     @Test
