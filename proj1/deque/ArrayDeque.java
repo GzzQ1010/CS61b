@@ -37,15 +37,12 @@ public class ArrayDeque<Type> implements deque<Type> {
         int Last=getLastIndex();
         Type[] new_arr= (Type[]) new Object[capacity];
         if(First<Last){
-            System.arraycopy(items,First,new_arr,0,next_back-First);
+            System.arraycopy(items,First,new_arr,0,size);
         }else {
-            if(First<=items.length-1){
-                System.arraycopy(items,First,new_arr,0,items.length-First);
+            System.arraycopy(items,First,new_arr,0,items.length-First);
+            System.arraycopy(items,0,new_arr,items.length-next_front,Last);
             }
-            if(Last>=0){
-                System.arraycopy(items,0,new_arr,items.length-First,Last+1);
-            }
-        }
+
         items=new_arr;
         next_front=items.length-1;
         next_back=size;
