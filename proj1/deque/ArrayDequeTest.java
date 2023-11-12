@@ -2,10 +2,12 @@ package deque;
 
 import org.junit.Test;
 
-import java.lang.reflect.Type;
+
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
+import edu.princeton.cs.algs4.StdRandom;
+
 
 public class ArrayDequeTest {
     @Test
@@ -107,6 +109,39 @@ public class ArrayDequeTest {
         Iterator<Integer> iter1=List1.iterator();
         assertTrue(iter1.hasNext());
         assertEquals(3,(int)iter1.next());
+    }
+@Test
+    public void add1000andRemove1000Test(){
+        ArrayDeque<Integer>List1= new ArrayDeque<Integer>();
+        LinkedListDeque<Integer> List2 = new LinkedListDeque<Integer>();
+        for (int i=0; i<1000;i++){
+            Integer randNum= StdRandom.uniform(0,100);
+            Integer Expect,Actual;
+            if(i<500){
+                List1.addFirst(randNum);
+                List2.addFirst(randNum);
+            }else{
+                List1.addLast(randNum);
+                List2.addLast(randNum);
+            }
+            Expect=List2.get(i);
+            Actual=List1.get(i);
+            List1.get(i);
+            assertEquals(Expect,Actual);
+        }
+        for (int i=0; i<1000;i++){
+            Integer Expect,Actual;
+            if(i<500){
+                 Expect=List2.removeFirst();
+                Actual=List1.removeFirst();
+            }else{
+                 Expect=List2.removeLast();
+                Actual=List1.removeLast();
+            }
+            assertEquals(Expect,Actual);
+        }
+
+
     }
 }
 

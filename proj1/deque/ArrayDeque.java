@@ -40,7 +40,7 @@ public class ArrayDeque<Type> implements deque<Type> {
             System.arraycopy(items,First,new_arr,0,size);
         }else {
             System.arraycopy(items,First,new_arr,0,items.length-First);
-            System.arraycopy(items,0,new_arr,items.length-next_front,Last);
+            System.arraycopy(items,0,new_arr,items.length-First,next_back);
             }
 
         items=new_arr;
