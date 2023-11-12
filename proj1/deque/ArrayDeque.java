@@ -53,6 +53,9 @@ public class ArrayDeque<Type> implements deque<Type> {
     }
 
     private boolean IfDesize(){
+        if(items.length<=8){
+            return false;
+        }
         return ((double) size/items.length)<=0.25;
     }
 

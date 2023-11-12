@@ -140,8 +140,49 @@ public class ArrayDequeTest {
             }
             assertEquals(Expect,Actual);
         }
+    }
 
 
+    public void fillupAfterEmpty() {
+        ArrayDeque<Integer> List1 = new ArrayDeque<Integer>();
+        LinkedListDeque<Integer> List2 = new LinkedListDeque<Integer>();
+        for (int i = 0; i < 1000; i++) {
+            Integer randNum = StdRandom.uniform(0, 100);
+            Integer Expect, Actual;
+            if (i < 500) {
+                List1.addFirst(randNum);
+                List2.addFirst(randNum);
+            } else {
+                List1.addLast(randNum);
+                List2.addLast(randNum);
+            }
+            Expect = List2.get(i);
+            Actual = List1.get(i);
+            List1.get(i);
+            assertEquals(Expect, Actual);
+        }
+        for (int i = 0; i < 1000; i++) {
+            Integer Expect, Actual;
+            if (i < 500) {
+                Expect = List2.removeFirst();
+                Actual = List1.removeFirst();
+            } else {
+                Expect = List2.removeLast();
+                Actual = List1.removeLast();
+            }
+            assertEquals(Expect, Actual);
+        }
+        for(int i = 0; i < 1000; i++){
+            Integer Expect, Actual;
+            if (i < 500) {
+                Expect = List2.removeFirst();
+                Actual = List1.removeFirst();
+            } else {
+                Expect = List2.removeLast();
+                Actual = List1.removeLast();
+            }
+            assertEquals(Expect, Actual);
+        }
     }
 }
 
