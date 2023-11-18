@@ -142,7 +142,7 @@ public class ArrayDequeTest {
         }
     }
 
-
+@Test
     public void fillupAfterEmpty() {
         ArrayDeque<Integer> List1 = new ArrayDeque<Integer>();
         LinkedListDeque<Integer> List2 = new LinkedListDeque<Integer>();
