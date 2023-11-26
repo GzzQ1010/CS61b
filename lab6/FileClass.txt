@@ -1,0 +1,23 @@
+https://docs.oracle.com/javase/7/docs/api/java/io/File.html
+The Java File class represents a file or directory in your operating system and allows you to do operations on those files and directories. In this class, you usually will want to be doing operations on files and directories by referring to them to their relative paths. 
+
+**You can make a File object in Java with the File constructor and passing in the path to the file**:
+
+File f = new File("dummy.txt");
+- when we create the new File object, we aren’t actually creating the dummy.txt file itself, we are just saying, “in the future, when I do operations with f, I want to do these operations on dummy.txt”.
+
+
+**o actually create this dummy.txt file, we could call:**
+
+f.createNewFile();
+
+
+
+**You can check if the file “dummy.txt” already exists or not with the exists method of the File class:**
+
+f.exists()
+
+** In this lab and Gitlit we use Unils.java to use java write to a file**
+if you want to write a String to a file, you can do the following:
+
+Utils.writeContents(f, "Hello World");

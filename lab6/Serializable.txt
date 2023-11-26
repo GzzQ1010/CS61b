@@ -1,0 +1,57 @@
+Serialization is the process of translating an object to a series of bytes that can then be stored in the file. We can then deserialize those bytes and get the original object back in a future invocation of the program.
+
+**To enable this feature for a given class in Java, this simply involves implementing the java.io.Serializable interface:**
+
+import java.io.Serializable;
+
+public class Model implements Serializable {
+    ...
+}
+
+
+This interface has no methods; it simply marks its subtypes for the benefit of some special Java classes for performing I/O on objects. For example
+
+Model m = ....;
+File outFile = new File(saveFileName);
+try {
+    ObjectOutputStream out =
+        new ObjectOutputStream(new FileOutputStream(outFile));
+    out.writeObject(m);
+    out.close();
+} catch (IOException excp) {
+    ...
+}
+
+
+**will convert m to a stream of bytes and store it in the file whose name is stored in saveFileName.**
+
+**The object may then be reconstructed with a code sequence such as
+Model m;
+File inFile = new File(saveFileName);
+try {
+    ObjectInputStream inp =
+        new ObjectInputStream(new FileInputStream(inFile));
+    m = (Model) inp.readObject();
+    inp.close();
+} catch (IOException | ClassNotFoundException excp) {
+    ...
+    m = null;
+}
+
+**********
+Serializable with Utils.java
+
+**serializing:
+
+Model m;
+File outFile = new File(saveFileName);
+
+// Serializing the Model object
+writeObject(outFile, m);
+
+**deserializing
+Model m;
+File inFile = new File(saveFileName);
+
+// Deserializing the Model object
+m = readObject(inFile, Model.class);
